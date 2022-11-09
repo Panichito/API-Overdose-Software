@@ -87,6 +87,7 @@ def all_caretaker(request):
         dt['id']=i.id
         dt['fullname']=i.member.user.first_name+' '+i.member.user.last_name
         dt['Caretaker_since']=i.Caretaker_since
+        dt['image_url']=i.member.Member_URLPic
         caretaker_list.append(dt)
 
     #print(dt)
