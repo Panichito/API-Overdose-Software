@@ -143,6 +143,12 @@ def get_mypatient(request, CID):
     print(patientlist)
     return Response(data=patientlist, status=status.HTTP_200_OK)
 
+@api_view(['GET'])
+def ask_caretakerid(request, UID):
+    this_member=Member.objects.get(user=UID)
+    this_caretaker=Caretaker.objects.get(member=this_member)
+    return Response(data=this_caretaker.id, status=status.HTTP_200_OK)
+
 oldhomedata={"message":"hello Django my old friend"}
 
 def Home(request):
