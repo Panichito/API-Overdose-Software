@@ -137,13 +137,11 @@ def update_profile(request, UID):
 def get_mypatient(request, CID):
     mypatient=Patient.objects.filter(caretaker=CID)
     #serializer=PatientSerializer(mypatient, many=True)  # in fact no need
-    patient_list=[]
+    patientlist=[]
     for i in mypatient:
-        patient_dict={}
-        patient_dict['name']='P'+str(i.id)+': '+i.member.user.first_name+' '+i.member.user.last_name
-        patient_list.append(patient_dict)
-    print(patient_list)
-    return Response(data=patient_list, status=status.HTTP_200_OK)
+        patientlist.append('P'+str(i.id)+': '+i.member.user.first_name+' '+i.member.user.last_name)
+    print(patientlist)
+    return Response(data=patientlist, status=status.HTTP_200_OK)
 
 @api_view(['GET'])
 def ask_caretakerid(request, UID):
