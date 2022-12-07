@@ -35,5 +35,5 @@ class PatientSerializer(serializers.ModelSerializer):
 
 class AlertSerializer(serializers.ModelSerializer):
     class Meta:
-        model=alert
+        model=Alert
         fields='__all__'
