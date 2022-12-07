@@ -192,8 +192,17 @@ def get_alerts(request, UID):
     mem=Member.objects.get(user=usr)
     ptn=Patient.objects.get(member=mem)
     rec=Record.objects.filter(patient=ptn)
-    alt=Alert.objects.filter(record=rec)
-    return Response(data=alt, status=status.HTTP_200_OK)
+    alert_list=[]
+    for r in rec:
+        alt=Alert.objects.filter(record=r)
+        for a in alt:
+            alert_dict={}
+            alert_dict['disease']=a.record.Record_disease
+            alert_dict['medname']=a.record.medicine.Medicine_name
+            alert_dict['time']=a.Alert_time
+            alert_dict['isTake']=a.Alert_isTake
+            alert_list.append(alert_dict)
+    return Response(data=alert_list, status=status.HTTP_200_OK)
 
 oldhomedata={"message":"hello Django my old friend"}
 
