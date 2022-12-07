@@ -186,6 +186,15 @@ def request_service(request, UID):
             return Response(data=caretaker_upd, status=status.HTTP_201_CREATED)
         return Response(data=serializer.errors, status=status.HTTP_404_NOT_FOUND)
 
+@api_view(['GET'])
+def get_alerts(request, UID):
+    usr=User.objects.get(id=UID)
+    mem=Member.objects.get(user=usr)
+    ptn=Patient.objects.get(member=mem)
+    rec=Record.objects.filter(patient=ptn)
+    alt=Alert.objects.filter(record=rec)
+    return Response(data=alt, status=status.HTTP_200_OK)
+
 oldhomedata={"message":"hello Django my old friend"}
 
 def Home(request):
