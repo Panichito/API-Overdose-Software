@@ -344,16 +344,14 @@ def add_history(request):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_404_NOT_FOUND)
 
-from datetime import date
 @api_view(['DELETE'])
 def delete_history(request, AID):
     alt=Alert.objects.get(id=AID)
     if request.method=='DELETE':
         data={}
         # query for wanted history
-        today=date.today()
-        his=History.objects.get(alert=alt, History_takeDate=today)
-        #delete=his.delete()
+        his=History.objects.filter(alert=alt, History_takeDate=datetime.datetime.now().date())  # use filter in case of clear old data
+        delete=his.delete()
         if delete:
             data['status']='record has been deleted'
             statuscode=status.HTTP_200_OK
