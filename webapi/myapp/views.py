@@ -257,8 +257,8 @@ def get_all_alerts(request, UID):
             alert_dict['time']=a.Alert_time
             alert_dict['isTake']=a.Alert_isTake
             alert_list.append(alert_dict)
-    newlist = sorted(alert_list, key=lambda d: d['time'])   # ไม่งั้นมันจะ sort ในแต่ละ record ไม่ใช่ all alerts
-    return Response(data=newlist, status=status.HTTP_200_OK)
+    sorted_list = sorted(alert_list, key=lambda d: d['time'])   # ไม่งั้นมันจะ sort ในแต่ละ record ไม่ใช่ all alerts
+    return Response(data=sorted_list, status=status.HTTP_200_OK)
 
 @api_view(['GET'])
 def get_specific_alerts(request, RID):
@@ -331,7 +331,8 @@ def get_user_history(request, UID):
                 history_dict['takeDate']=h.History_takeDate
                 history_dict['takeTime']=h.History_takeTime
                 history_list.append(history_dict)
-    return Response(data=history_list, status=status.HTTP_200_OK)
+    sorted_list = sorted(history_list, key=lambda d: d['takeTime'])
+    return Response(data=sorted_list, status=status.HTTP_200_OK)
 
 @api_view(['POST'])
 def add_history(request):
