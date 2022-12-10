@@ -35,6 +35,7 @@ ALLOWED_HOSTS = ['weatherreporto.pythonanywhere.com', '*']
 # Application definition
 
 INSTALLED_APPS = [
+    'django_crontab',
     'whitenoise.runserver_nostatic',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -43,8 +44,11 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
-    'django_crontab',
     'myapp',
+]
+
+CRONJOBS = [
+    ('*/1 * * * *', 'myapp.cron.my_scheduled_job')
 ]
 
 MIDDLEWARE = [
@@ -88,11 +92,6 @@ DATABASES = {
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-
-# cronjobs
-CRONJOBS = [
-    ('*/1 * * * *', 'myapp.cron.my_scheduled_job')
-]
 
 
 # Password validation
