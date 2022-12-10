@@ -353,10 +353,10 @@ def delete_history(request, AID):
         his=History.objects.filter(alert=alt, History_takeDate=datetime.datetime.now().date())  # use filter in case of clear old data
         delete=his.delete()
         if delete:
-            data['status']='record has been deleted'
+            data['status']='history has been cleared'
             statuscode=status.HTTP_200_OK
         else:
-            data['status']='failed to delete record'
+            data['status']='failed to clear history'
             statuscode=status.HTTP_400_BAD_REQUEST
         return Response(data=data, status=statuscode)
 
