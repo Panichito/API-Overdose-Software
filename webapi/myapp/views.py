@@ -312,16 +312,6 @@ def delete_alert(request, AID):
             statuscode=status.HTTP_400_BAD_REQUEST
         return Response(data=data, status=statuscode)
 
-@api_view(['POST'])
-def add_history(request):
-    if request.method=='POST':
-        serializer=HistorySerializer(data=request.data)
-        print(request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=status.HTTP_201_CREATED)
-        return Response(serializer.errors, status=status.HTTP_404_NOT_FOUND)
-
 @api_view(['GET'])
 def get_user_history(request, UID):
     usr=User.objects.get(id=UID)
@@ -342,6 +332,34 @@ def get_user_history(request, UID):
                 history_dict['takeTime']=h.History_takeTime
                 history_list.append(history_dict)
     return Response(data=history_list, status=status.HTTP_200_OK)
+
+@api_view(['POST'])
+def add_history(request):
+    if request.method=='POST':
+        serializer=HistorySerializer(data=request.data)
+        print(request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_404_NOT_FOUND)
+
+from datetime import date
+@api_view(['DELETE'])
+def delete_history(request, AID):
+    alt=Alert.objects.get(id=AID)
+    if request.method=='DELETE':
+        data={}
+        # query for wanted history
+        today=date.today()
+        his=History.objects.get(alert=alt, History_takeDate=today)
+        #delete=his.delete()
+        if delete:
+            data['status']='record has been deleted'
+            statuscode=status.HTTP_200_OK
+        else:
+            data['status']='failed to delete record'
+            statuscode=status.HTTP_400_BAD_REQUEST
+        return Response(data=data, status=statuscode)
 
 def Home(request):
     #return JsonResponse(data=oldhomedata, safe=False, json_dumps_params={'ensure_ascii': False})
