@@ -331,7 +331,7 @@ def get_user_history(request, UID):
                 history_dict['takeDate']=h.History_takeDate
                 history_dict['takeTime']=h.History_takeTime
                 history_list.append(history_dict)
-    sorted_list = sorted(history_list, key=lambda d: d['takeTime'])
+    sorted_list = sorted(history_list, key=lambda d: d['-takeDate'])
     return Response(data=sorted_list, status=status.HTTP_200_OK)
 
 @api_view(['POST'])
