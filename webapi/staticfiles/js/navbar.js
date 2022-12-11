@@ -47,7 +47,7 @@ const navBar = (() => {
                 break;
             case 4:
                 link.textContent = 'Download';
-                link.setAttribute('href', 'https://github.com/Panichito/Overdose-Software');
+                link.setAttribute('href', 'https://drive.google.com/drive/folders/11B1iHNkQi0HDjUran_029edsGej3-9QN');
                 navLinksItem.classList.add('btn');
                 break;
             default:
