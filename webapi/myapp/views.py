@@ -69,7 +69,7 @@ def authentiate_app(request):
         username=data.get('username')
         password=data.get('password')
         try:
-            trygetuser=User.objects.get_if_exist(username=username)  # display info back to screen
+            trygetuser=User.objects.get(username=username)  # display info back to screen
         except:
             dt={'status':'no-acount'}
             return Response(data=dt, status=status.HTTP_404_NOT_FOUND)
