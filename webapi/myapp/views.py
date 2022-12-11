@@ -379,10 +379,10 @@ def refresh_alerts(request):
 
 def Home(request):
     #return JsonResponse(data=oldhomedata, safe=False, json_dumps_params={'ensure_ascii': False})
-    return render(request, 'overdoseweb/home.html')
+    return render(request, 'overdoseweb/index.html')
 
 def About(request):
-    return render(request, 'overdoseweb/about.html')
+    return render(request, 'overdoseweb/ourTeam.html')
 
 def Contact(request):
     return render(request, 'overdoseweb/contact.html')
