@@ -316,6 +316,25 @@ def delete_alert(request, AID):
             statuscode=status.HTTP_400_BAD_REQUEST
         return Response(data=data, status=statuscode)
 
+from operator import itemgetter as i
+from functools import cmp_to_key
+
+def cmp(x, y):
+    return (x > y) - (x < y)
+
+def multikeysort(items, columns):
+    comparers = [
+        ((i(col[1:].strip()), -1) if col.startswith('-') else (i(col.strip()), 1))
+        for col in columns
+    ]
+    def comparer(left, right):
+        comparer_iter = (
+            cmp(fn(left), fn(right)) * mult
+            for fn, mult in comparers
+        )
+        return next((result for result in comparer_iter if result), 0)
+    return sorted(items, key=cmp_to_key(comparer))
+
 @api_view(['GET'])
 def get_user_history(request, UID):
     usr=User.objects.get(id=UID)
@@ -326,7 +345,8 @@ def get_user_history(request, UID):
     for r in rec:
         alt=Alert.objects.filter(record=r)
         for a in alt:
-            his=History.objects.filter(alert=a).order_by('-History_takeDate', 'History_takeTime')
+            #his=History.objects.filter(alert=a).order_by('-History_takeDate', '-History_takeTime')
+            his=History.objects.filter(alert=a)
             for h in his:
                 history_dict={}
                 history_dict['id']=h.id
@@ -334,7 +354,8 @@ def get_user_history(request, UID):
                 history_dict['takeDate']=h.History_takeDate
                 history_dict['takeTime']=h.History_takeTime
                 history_list.append(history_dict)
-    sorted_list = sorted(history_list, key=lambda d: d['takeDate'], reverse=True)
+    #sorted_list = sorted(history_list, key=lambda d: d['takeDate'], reverse=True)
+    sorted_list = multikeysort(history_list, ['-takeDate', '-takeTime'])
     return Response(data=sorted_list, status=status.HTTP_200_OK)
 
 @api_view(['POST'])
