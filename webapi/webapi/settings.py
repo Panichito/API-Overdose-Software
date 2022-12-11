@@ -29,13 +29,12 @@ SECRET_KEY = os.environ.get('SECRET_KEY', 'some_random_default_string')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get('DEBUG', False)
 
-ALLOWED_HOSTS = ['weatherreporto.pythonanywhere.com', '*']
+ALLOWED_HOSTS = ['weatherreporto.pythonanywhere.com']
 
 
 # Application definition
 
 INSTALLED_APPS = [
-    'django_crontab',
     'whitenoise.runserver_nostatic',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -45,10 +44,6 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'myapp',
-]
-
-CRONJOBS = [
-    ('*/1 * * * *', 'myapp.cron.my_scheduled_job')
 ]
 
 MIDDLEWARE = [
