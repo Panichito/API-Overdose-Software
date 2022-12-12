@@ -57,11 +57,11 @@ const footer = (() => {
                     switch(i) {
                         case 1:
                             a.textContent = 'Company';
-                            a.setAttribute('href', 'javascript:;');
+                            a.setAttribute('href', '/contact');
                             break;
                         case 2:
                             a.textContent = 'Team';
-                            a.setAttribute('href', 'javascript:;');
+                            a.setAttribute('href', '/about');
                             break;
                         default:
                             print('You are not suppose to be here!');
@@ -74,11 +74,11 @@ const footer = (() => {
             // Our company
             case 3:
                 item.classList.add('col-md-3', 'item', 'text');
-                header.textContent = 'Overdose company';
+                header.textContent = 'Overdose Software';
 
                 // create an address paragraph
                 const paragraph = document.createElement('p');
-                paragraph.textContent = 'อาคารวิศววัฒนะ (Witsawawatthana Building) แขวงบางมด เขตทุ่งครุ กรุงเทพมหานคร 10140';
+                paragraph.textContent = 'Witsawawatthana Building (10th floor), Bangmod Subdistrict, Thung Khru District, Bangkok 10140';
 
                 item.append(header, paragraph);
                 break;
@@ -94,7 +94,7 @@ const footer = (() => {
                     i.style.padding = '1px';
                     switch(x) {
                         case 1:
-                            a.setAttribute('href', 'javascript:;');
+                            a.setAttribute('href', 'https://www.facebook.com/KMUTT/');
                             i.classList.add('icon', 'ion-social-facebook');
                             break;
                         case 2:
@@ -106,7 +106,7 @@ const footer = (() => {
                             i.classList.add('icon', 'ion-social-snapchat');
                             break;
                         case 4:
-                            a.setAttribute('href', 'javascript:;');
+                            a.setAttribute('href', 'https://www.instagram.com/love.kmutt/');
                             i.classList.add('icon', 'ion-social-instagram');
                             break;
                         default:
@@ -125,7 +125,7 @@ const footer = (() => {
     // create a copyright paragraph
     const copyright = document.createElement('p');
     copyright.classList.add('copyright');
-    copyright.textContent = 'Overdose © 2022';
+    copyright.textContent = 'Overdose Software | MIT LICENSE ©2022';
 
     container.append(row, copyright);
     document.body.append(footer);
