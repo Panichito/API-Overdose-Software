@@ -177,7 +177,9 @@ def ask_caretakerid(request, UID):
 def get_care_status(request, UID):
     this_member=Member.objects.get(user=UID)
     this_caretaker=Caretaker.objects.get(member=this_member)
-    return Response(data=this_caretaker.Caretaker_status, status=status.HTTP_200_OK)
+    caretaker_struct={}
+    caretaker_struct['Caretaker_status']=this_caretaker.Caretaker_status
+    return Response(data=caretaker_struct, status=status.HTTP_200_OK)
 
 @api_view(['PUT'])
 def switch_care_status(request, UID):
