@@ -173,6 +173,24 @@ def ask_caretakerid(request, UID):
     this_caretaker=Caretaker.objects.get(member=this_member)
     return Response(data=this_caretaker.id, status=status.HTTP_200_OK)
 
+@api_view(['GET'])
+def get_care_status(request, UID):
+    this_member=Member.objects.get(user=UID)
+    this_caretaker=Caretaker.objects.get(member=this_member)
+    return Response(data=this_caretaker.Caretaker_status, status=status.HTTP_200_OK)
+
+@api_view(['PUT'])
+def switch_care_status(request, UID):
+    this_member=Member.objects.get(user=UID)
+    this_caretaker=Caretaker.objects.get(member=this_member)
+    if request.method=='PUT':
+        serializer=CaretakerSerializer(this_caretaker, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            caretaker_upd={}
+            caretaker_upd['status']='updated caretaker status'
+            return Response(data=caretaker_upd, status=status.HTTP_201_CREATED)
+        return Response(data=serializer.errors, status=status.HTTP_404_NOT_FOUND)
 
 @api_view(['PUT'])
 def request_service(request, UID):
@@ -186,7 +204,7 @@ def request_service(request, UID):
         if serializer.is_valid():
             caretaker_upd={}
             serializer.save()
-            caretaker_upd['status']='updated'
+            caretaker_upd['status']='updated service'
             return Response(data=caretaker_upd, status=status.HTTP_201_CREATED)
         return Response(data=serializer.errors, status=status.HTTP_404_NOT_FOUND)
 
