@@ -18,21 +18,21 @@ let facebookLink2 = 'https://www.facebook.com/map.kantawat';
 let twitterLink2 = 'https://github.com/Miran-Mirantee';
 let linkedinLink2 = 'javascript:;';
 
-let memberName3 = 'Phoramint T.';
-let memberRole3 = 'Chief Marketing Officer ';
-let memberInfo3 = 'Quality Assurance | Web Master';
-let memberImg3 = min;
-let facebookLink3 = 'https://www.facebook.com/profile.php?id=100007113468193';
-let twitterLink3 = 'https://github.com/PhoramintTaweeros';
-let linkedinLink3 = 'javascript:;';
+let memberName3 = 'Poonyavee W.';
+let memberRole3 = 'Chief Data Officer';
+let memberInfo3 = 'Frontend Developer | UX UI Designer';
+let memberImg3 = pup;
+let facebookLink3 = 'https://www.facebook.com/poonyavee.wongwisetsuk';
+let twitterLink3 = 'https://github.com/pupshi';
+let linkedinLink3 = 'https://www.linkedin.com/in/poonyavee-wongwisetsuk-9a0197253/';
 
-let memberName4 = 'Poonyavee W.';
-let memberRole4 = 'Chief Data Officer';
-let memberInfo4 = 'Frontend Developer | UX UI Designer';
-let memberImg4 = pup;
-let facebookLink4 = 'https://www.facebook.com/poonyavee.wongwisetsuk';
-let twitterLink4 = 'https://github.com/pupshi';
-let linkedinLink4 = 'https://www.linkedin.com/in/poonyavee-wongwisetsuk-9a0197253/';
+let memberName4 = 'Phoramint T.';
+let memberRole4 = 'Chief Marketing Officer ';
+let memberInfo4 = 'Quality Assurance | Web Master';
+let memberImg4 = min;
+let facebookLink4 = 'https://www.facebook.com/profile.php?id=100007113468193';
+let twitterLink4 = 'https://github.com/PhoramintTaweeros';
+let linkedinLink4 = 'javascript:;';
 
 let memberName5 = 'Pornsawalee K.';
 let memberRole5 = 'Chief Operating Officer';
