@@ -26,7 +26,7 @@ let facebookLink3 = 'https://www.facebook.com/poonyavee.wongwisetsuk';
 let twitterLink3 = 'https://github.com/pupshi';
 let linkedinLink3 = 'https://www.linkedin.com/in/poonyavee-wongwisetsuk-9a0197253/';
 
-let memberName4 = 'Phoramint T.';
+let memberName4 = 'Phoramint C.';
 let memberRole4 = 'Chief Marketing Officer ';
 let memberInfo4 = 'Quality Assurance | Web Master';
 let memberImg4 = min;
