@@ -188,7 +188,7 @@ def switch_care_status(request, UID):
         if serializer.is_valid():
             serializer.save()
             caretaker_upd={}
-            caretaker_upd['status']='updated caretaker '+str(this_caretaker.member.user.first_name)+' status to '+str(request.data['Caretaker_status'])
+            caretaker_upd['status']='updated caretaker status to '+str(request.data['Caretaker_status'])
             return Response(data=caretaker_upd, status=status.HTTP_201_CREATED)
         return Response(data=serializer.errors, status=status.HTTP_404_NOT_FOUND)
 
