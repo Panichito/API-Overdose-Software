@@ -65,7 +65,7 @@ def register_newuser(request):
 # An API to check if the user has logged in by checking if this user exists? Is the password correct?
 from django.contrib.auth import authenticate, login
 @api_view(['POST'])
-def authentiate_app(request):
+def authenticate_app(request):
     if request.method=='POST':
         data=request.data
         username=data.get('username')
@@ -460,3 +460,47 @@ def About(request):
 # run contact page html
 def Contact(request):
     return render(request, 'overdoseweb/contact.html')
+
+##### FOR TODOLIST HACKATHON APP #####
+# GET Data
+@api_view(['GET'])
+def all_todolist(request):
+    alltodolist=Todolist.objects.all() # SELCT * FROM Todolist
+    serializer=TodolistSerializer(alltodolist, many=True)
+    return Response(serializer.data, status=status.HTTP_200_OK)
+
+# POST Data (save data to database)
+@api_view(['POST'])
+def post_todolist(request):
+    if request.method=='POST':
+        serializer=TodolistSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_404_NOT_FOUND)
+
+@api_view(['PUT'])
+def update_todolist(request, TID):
+    todo=Todolist.objects.get(id=TID)
+    if request.method=='PUT':
+        data={}
+        serializer=TodolistSerializer(todo, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            data['status']='updated'
+            return Response(data=data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_404_NOT_FOUND)
+
+@api_view(['DELETE'])
+def delete_todolist(request, TID):
+    todo=Todolist.objects.get(id=TID)
+    if request.method=='DELETE':
+        data={}
+        delete=todo.delete()
+        if delete:
+            data['status']='deleted'
+            statuscode=status.HTTP_200_OK
+        else :
+            data['status']='failed'
+            statuscode=status.HTTP_400_BAD_REQUEST
+        return Response(data=data, status=statuscode)

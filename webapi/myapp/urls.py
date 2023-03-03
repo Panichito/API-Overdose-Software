@@ -6,7 +6,7 @@ urlpatterns = [
     path('about/', About, name='about-page'),
     path('contact/', Contact, name='contact-page'),
     path('api/newuser', register_newuser),
-    path('api/authenticate', authentiate_app),
+    path('api/authenticate', authenticate_app),
     path('api/all-caretaker', all_caretaker),
     path('api/all-medicine', all_medicine),
     path('api/post-record', post_record),
@@ -30,4 +30,9 @@ urlpatterns = [
     path('api/delete-history/<int:AID>', delete_history),
     path('api/latest-history', ask_latest_history),
     path('api/refresh-alerts', refresh_alerts),
+
+    # path for todolist
+    path('api/all-todolist/', all_todolist),
+    path('api/post-todolist', post_todolist),
+    path('api/update-todolist/<int:TID>', update_todolist),
 ]
