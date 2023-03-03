@@ -78,7 +78,7 @@ class History(models.Model):
 
 # for todo list purposes
 
-class Todo(models.Model):
+class Todolist(models.Model):
     #user=models.OneToOneField(User, on_delete=models.CASCADE, null=True, blank=True)
     Todo_title=models.CharField(max_length=100)
     Todo_detail=models.TextField(null=True, blank=True)
