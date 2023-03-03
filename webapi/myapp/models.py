@@ -78,10 +78,10 @@ class History(models.Model):
 
 # for todo list purposes
 
-class Todolist(models.Model):
-    user=models.OneToOneField(User, on_delete=models.CASCADE, null=True, blank=True)
+class Todo(models.Model):
+    #user=models.OneToOneField(User, on_delete=models.CASCADE, null=True, blank=True)
     Todo_title=models.CharField(max_length=100)
     Todo_detail=models.TextField(null=True, blank=True)
-    Todo_isComplete=models.BooleanField(default=False, null=True, blank=True)
+    #Todo_isComplete=models.BooleanField(default=False, null=True, blank=True)
     def __str__(self):
         return str(self.id)+" - "+self.Todo_title

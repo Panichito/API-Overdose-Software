@@ -47,5 +47,5 @@ class HistorySerializer(serializers.ModelSerializer):
 # for todolist project
 class TodolistSerializer(serializers.ModelSerializer):
     class Meta:
-        model=Todolist
+        model=Todo
         fields='__all__'
