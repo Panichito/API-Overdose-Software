@@ -74,3 +74,14 @@ class History(models.Model):
     
     def __str__(self):
         return "H"+str(self.id)+' - '+self.alert.record.patient.member.user.username
+
+
+# for todo list purposes
+
+class Todolist(models.Model):
+    user=models.OneToOneField(User, on_delete=models.CASCADE)
+    Todo_title=models.CharField(max_length=100)
+    Todo_detail=models.TextField(null=True, blank=True)
+    Todo_isComplete=models.BooleanField(default=False)
+    def __str__(self):
+        return str(self.id)+" - "+self.Todo_title
