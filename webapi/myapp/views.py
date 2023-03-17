@@ -462,14 +462,12 @@ def Contact(request):
     return render(request, 'overdoseweb/contact.html')
 
 ##### FOR TODOLIST HACKATHON APP #####
-# GET Data
 @api_view(['GET'])
 def all_todolist(request):
     alltodolist=Todolist.objects.all() # SELCT * FROM Todolist
     serializer=TodolistSerializer(alltodolist, many=True)
     return Response(serializer.data, status=status.HTTP_200_OK)
 
-# POST Data (save data to database)
 @api_view(['POST'])
 def post_todolist(request):
     if request.method=='POST':
