@@ -461,6 +461,7 @@ def About(request):
 def Contact(request):
     return render(request, 'overdoseweb/contact.html')
 
+
 ##### FOR TODOLIST HACKATHON APP #####
 @api_view(['GET'])
 def all_todolist(request):
