@@ -521,8 +521,10 @@ def post_enroll(request):
         return Response(serializer.errors, status=status.HTTP_404_NOT_FOUND)
 
 @api_view(['DELETE'])
-def delete_enroll(request, EID):
-    enroll=Enroll.objects.get(id=EID)
+def delete_enroll(request, UID, EID):
+    usr=User.objects.get(id=UID)
+    evt=Event.objects.get(id=EID)
+    enroll=Enroll.objects.filter(user=usr, event=evt)
     if request.method=='DELETE':
         data={}
         delete=enroll.delete()
@@ -539,8 +541,8 @@ def ask_enroll(request, UID, EID):
     try:
         usr=User.objects.get(id=UID)
         evt=Event.objects.get(id=EID)
-        enr=Enroll.objects.filter(user=usr, event=evt)
-        print(len(enr))
-        return Response(data=len(enr), status=status.HTTP_200_OK)
+        enroll=Enroll.objects.filter(user=usr, event=evt)
+        print(len(enroll))
+        return Response(data=len(enroll), status=status.HTTP_200_OK)
     except:
         return Response(data=0, status=status.HTTP_200_OK)
