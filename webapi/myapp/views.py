@@ -520,3 +520,17 @@ def post_enroll(request):
             serializer.save()
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_404_NOT_FOUND)
+
+@api_view(['DELETE'])
+def delete_enroll(request, EID):
+    enroll=Enroll.objects.get(id=EID)
+    if request.method=='DELETE':
+        data={}
+        delete=todo.delete()
+        if delete:
+            data['status']='deleted'
+            statuscode=status.HTTP_200_OK
+        else :
+            data['status']='failed'
+            statuscode=status.HTTP_400_BAD_REQUEST
+        return Response(data=data, status=statuscode)
