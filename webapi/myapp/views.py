@@ -511,3 +511,12 @@ def all_event(request):
     allevent=Event.objects.all()
     serializer=EventSerializer(allevent, many=True)
     return Response(serializer.data, status=status.HTTP_200_OK)
+
+@api_view(['POST'])
+def post_enroll(request):
+    if request.method=='POST':
+        serializer=EnrollSerializer(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data, status=status.HTTP_201_CREATED)
+        return Response(serializer.errors, status=status.HTTP_404_NOT_FOUND)

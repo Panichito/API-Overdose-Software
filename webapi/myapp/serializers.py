@@ -55,3 +55,8 @@ class EventSerializer(serializers.ModelSerializer):
     class Meta:
         model=Event
         fields='__all__'
+
+class EnrollSerializer(serializers.ModelSerializer):
+    class Meta:
+        model=Enroll
+        fields='__all__'

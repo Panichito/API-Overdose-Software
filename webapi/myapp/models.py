@@ -98,4 +98,4 @@ class Enroll(models.Model):
     user=models.ForeignKey(User, on_delete=models.CASCADE)
     event=models.ForeignKey(Event, on_delete=models.CASCADE)
     def __str__(self):
-        return self.user.username+' '+self.event.name
+        return self.user.username+', '+self.event.name
