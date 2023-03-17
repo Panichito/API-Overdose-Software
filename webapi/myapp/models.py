@@ -76,8 +76,7 @@ class History(models.Model):
         return "H"+str(self.id)+' - '+self.alert.record.patient.member.user.username
 
 
-# for todo list purposes
-
+#### for todo list purposes ####
 class Todolist(models.Model):
     #user=models.OneToOneField(User, on_delete=models.CASCADE, null=True, blank=True)
     title=models.CharField(max_length=100)
@@ -85,3 +84,18 @@ class Todolist(models.Model):
     #Todo_isComplete=models.BooleanField(default=False, null=True, blank=True)
     def __str__(self):
         return str(self.id)+" - "+self.title
+
+#### for event register ####
+class Event(models.Model):
+    name=models.CharField(max_length=100)
+    detail=models.TextField(null=True, blank=True)
+    start=models.DateField(default=datetime.date.today)
+    end=models.DateField(null=True, blank=True)
+    def __str__(self):
+        return str(self.id)+' - '+self.name
+
+class Enroll(models.Model):
+    user=models.ForeignKey(User, on_delete=models.CASCADE)
+    event=models.ForeignKey(Event, on_delete=models.CASCADE)
+    def __str__(self):
+        return self.user.username+' '+self.event.name
