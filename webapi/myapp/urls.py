@@ -36,4 +36,7 @@ urlpatterns = [
     path('api/post-todolist', post_todolist),
     path('api/update-todolist/<int:TID>', update_todolist),
     path('api/delete-todolist/<int:TID>', delete_todolist),
+
+    #### path for event register app #####
+    path('api/all-event/', all_event),
 ]

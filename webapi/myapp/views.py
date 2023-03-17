@@ -504,3 +504,10 @@ def delete_todolist(request, TID):
             data['status']='failed'
             statuscode=status.HTTP_400_BAD_REQUEST
         return Response(data=data, status=statuscode)
+
+##### FOR EVENT REGISTER APP #####
+@api_view(['GET'])
+def all_event(request):
+    allevent=Event.objects.all()
+    serializer=EventSerializer(allevent, many=True)
+    return Response(serializer.data, status=status.HTTP_200_OK)
