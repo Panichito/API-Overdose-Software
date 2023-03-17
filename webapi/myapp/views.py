@@ -533,3 +533,14 @@ def delete_enroll(request, EID):
             data['status']='failed'
             statuscode=status.HTTP_400_BAD_REQUEST
         return Response(data=data, status=statuscode)
+
+@api_view(['GET'])
+def ask_enroll(request, UID, EID):
+    try:
+        usr=User.objects.get(id=UID)
+        evt=Event.objects.get(id=EID)
+        enr=Enroll.objects.filter(user=usr, event=evt)
+        print(len(enr))
+        return Response(data=len(enr), status=status.HTTP_200_OK)
+    except:
+        return Response(data=0, status=status.HTTP_200_OK)

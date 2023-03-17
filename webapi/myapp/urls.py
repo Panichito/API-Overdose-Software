@@ -41,4 +41,5 @@ urlpatterns = [
     path('api/all-event/', all_event),
     path('api/post-enroll', post_enroll),
     path('api/delete-enroll/<int:EID>', delete_enroll),
+    path('api/ask-enroll/<int:UID>/<int:EID>', ask_enroll),
 ]
