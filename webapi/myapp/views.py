@@ -526,7 +526,7 @@ def delete_enroll(request, EID):
     enroll=Enroll.objects.get(id=EID)
     if request.method=='DELETE':
         data={}
-        delete=todo.delete()
+        delete=enroll.delete()
         if delete:
             data['status']='deleted'
             statuscode=status.HTTP_200_OK
